@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 256 256" role="img" aria-labelledby="title description">
+  <title id="title">Shadow Enclave masked ballerina</title>
+  <desc id="description">A young dancer in a pink tutu and a white ballet mask, balancing en pointe inside a blush medallion.</desc>
+  <metadata>Copyright © 2026 Shadow Enclave Project. All rights reserved.</metadata>
+
+  <circle cx="128" cy="128" r="119" fill="#F9DCEB"/>
+  <circle cx="128" cy="128" r="115" fill="none" stroke="#AD5B83" stroke-width="2.5"/>
+  <circle cx="128" cy="128" r="107" fill="#FFF1F7"/>
+
+  <g fill="#C56090">
+    <path d="M66 61q1.8 8.2 10 10-8.2 1.8-10 10-1.8-8.2-10-10 8.2-1.8 10-10Z"/>
+    <path d="M191 75q1.5 6.5 8 8-6.5 1.5-8 8-1.5-6.5-8-8 6.5-1.5 8-8Z"/>
+    <path d="M180 174q1.4 7.6 9 9-7.6 1.4-9 9-1.4-7.6-9-9 7.6-1.4 9-9Z"/>
+    <circle cx="80" cy="172" r="2.6"/>
+    <circle cx="185" cy="62" r="2.6"/>
+  </g>
+  <path d="M95 220q16 5 35 0" fill="none" stroke="#D78DAF" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Ballet limbs, slippers and ribbons -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M124 150q-6 20-8 34l-4 31M136 151q16 7 29 3 18-6 40-24
+             M120 117q-29 7-52-7l-17-11M141 115q23-22 25-44l-5-19"
+          stroke="#542B48" stroke-width="15"/>
+    <path d="M124 150q-6 20-8 34l-4 31M136 151q16 7 29 3 18-6 40-24
+             M120 117q-29 7-52-7l-17-11M141 115q23-22 25-44l-5-19"
+          stroke="#FFD9D2" stroke-width="9"/>
+    <path d="M113 208l-1 10M200 133l10-7" stroke="#542B48" stroke-width="12"/>
+    <path d="M113 208l-1 10M200 133l10-7" stroke="#CA4B83" stroke-width="6.5"/>
+    <path d="m110 195 7 5m-8 2 7-5m74-58 8 4m-4-9 1 10" stroke="#A74973" stroke-width="2.3"/>
+  </g>
+
+  <!-- Bodice and pleated tutu -->
+  <path d="M119 109q10 9 21 0l5 8q-7 8-4 21l4 12-28 2 2-14q3-12-5-20Z"
+        fill="#CE5B91" stroke="#542B48" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M120 135q11 5 22 0c8 8 17 14 29 19-8 6-22 10-36 11-14 2-33-1-44-8 11-6 21-14 29-22Z"
+        fill="#F2A3CB" stroke="#542B48" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M125 142q-4 8-13 14m21-13-2 16m10-17q6 8 13 11"
+        fill="none" stroke="#A84F7B" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M121 135q10 4 21 0" fill="none" stroke="#FFF1F7" stroke-width="2.8" stroke-linecap="round"/>
+
+  <!-- Bun, hair and the full white mask -->
+  <circle cx="109" cy="63" r="13" fill="#542B48"/>
+  <path d="M113 73q-4-6-10-8" fill="none" stroke="#D976A5" stroke-width="4" stroke-linecap="round"/>
+  <path d="M104 83c0-15 12-25 27-24 15 1 26 13 25 27-1 15-11 25-25 26-15 0-27-12-27-29Z" fill="#542B48"/>
+  <path d="M111 86q2-6 8-10 6 3 12 2 7-1 13-6 6 5 6 14c0 12-8 22-18 23-11 0-20-9-21-23Z"
+        fill="#FFFDFE" stroke="#542B48" stroke-width="2.7" stroke-linejoin="round"/>
+  <path d="M116 87q5-4 10 0-4 5-9 2Zm19-1q5-5 10-1l-1 2q-5 4-9-1Z" fill="#542B48"/>
+  <path d="M129 99q3 1 6-1" fill="none" stroke="#C489A5" stroke-width="1.9" stroke-linecap="round"/>
+  <path d="M119 68q7-6 15-4" fill="none" stroke="#986386" stroke-width="2.3" stroke-linecap="round"/>
+</svg>

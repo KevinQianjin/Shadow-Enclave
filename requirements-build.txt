@@ -1,0 +1,9 @@
+# Windows x64, standard CPython 3.14. Install in a fresh virtual environment.
+cryptography==49.0.0
+numpy==2.4.6
+Pillow==12.3.0
+pywin32==312
+soundfile==0.14.0
+tkinterdnd2==0.7.0
+PyInstaller==6.22.3
+pyinstaller-hooks-contrib==2026.9
