@@ -6,6 +6,10 @@
 
 Shadow Enclave V4 是一款採用英文介面的 Windows 桌面應用程式，可加密文字，並將密文嵌入圖片、音訊或文字載體。選擇 **Portable** 可傳送到其他電腦，選擇 **This PC Only** 則綁定目前的 Windows 帳戶和 TPM。你可以輸出單一載體，也可以把密文拆成兩份配對載體。
 
+[快速開始](#快速開始)
+
+![包含 Encrypt、Decrypt、Settings 和 About 的主畫面](docs/images/home.png)
+
 ## 在 Windows 上安裝
 
 你需要 64 位元 Windows 11、可核准安裝服務的系統管理員，以及已為使用 V4 的帳戶設定好的 Windows Hello。**This PC Only** 還需要可用的 TPM 2.0。預先建置的安裝包含有執行環境，接收者無需安裝 Python。
@@ -21,12 +25,26 @@ Shadow Enclave V4 是一款採用英文介面的 Windows 桌面應用程式，�
 3. 將**完整**安裝包解壓縮到一個資料夾，執行 `Install V4.cmd`，核准 Windows 系統管理員提示。指令碼會安裝桌面程式及其背景服務。
 4. 執行 `Start V4.cmd`。首次啟動時，選擇 **Enroll Windows Hello**，使用預定的 Windows 帳戶完成系統提示。指紋、人臉或 PIN 由 Windows 依裝置原則處理。
 
-## 加密、傳送和解密
+## 快速開始
 
-1. 開啟 **Encrypt**，輸入明文，選擇載體格式和份數。標準載體包括 PNG、BMP、WAV、FLAC 和純文字封裝（Text Armor）。AI 文字偽裝可將短訊息嵌入一份或兩份自然風格的英文文字。
-2. 選擇 **Portable** 或 **This PC Only**，設定獨立的高強度通關密語並妥善保存，然後匯出載體。
-3. 分享 **Portable** 訊息時，請以附件傳送原始檔，並透過另一個管道告知對方通關密語。雙載體必須傳送兩份。圖片或音訊轉碼、通訊軟體壓縮及編輯編碼後的文字都可能破壞嵌入的資料。
-4. 在 **Decrypt** 中開啟載體或兩份配對載體，輸入通關密語並透過 Windows Hello 授權。
+### 產生測試 PNG
+
+1. 在主畫面的 **Encrypt** 卡片點選 **Open**。在 **Input** 輸入 `Hello from Shadow Enclave V4.`，再點選 **Continue**。
+2. 在 **Output** 選擇 **Single Carrier**、**Portable — Ready to Share** 和 **PNG**。點選 **Output folder** 旁的 **Browse** 選擇儲存位置。
+3. 在 **Protection** 妥善保存自動產生的通關密語。點選 **Continue**，再於 **Review** 點選 **Encrypt**。記下匯出的 PNG 所在位置。
+
+![已選擇單一載體、可傳輸模式和 PNG 的輸出畫面](docs/images/encrypt-png.png)
+
+### 開啟測試 PNG
+
+1. 回到主畫面，在 **Decrypt** 卡片點選 **Open**。保留 **Detect Format**，點選 **Carrier / Text A** 旁的 **Browse**，選取剛匯出的 PNG。這次測試將 **Partner / Text B** 留空。
+2. 點選 **Check & Decrypt**，輸入同一組通關密語並完成 Windows Hello 驗證。確認 **Decryption Complete** 顯示原始訊息。
+
+![在 Carrier / Text A 中填入示範 PNG 的解密畫面](docs/images/decrypt-png.png)
+
+## 分享與裝置綁定
+
+請以原始附件傳送 Portable 載體，並透過另一個管道分享通關密語。雙載體請選取同一次匯出的兩份檔案，分別放入 **Carrier / Text A** 和 **Partner / Text B**。保持編碼文字原樣，並避免轉換圖片或音訊。
 
 | 模式 | 可解密的位置 | 所需條件 |
 | --- | --- | --- |
@@ -38,6 +56,8 @@ V4 支援 V4 載體。V1–V3 檔案請使用對應的舊版程式開啟。
 ## DeepSeek 與隱私
 
 標準加密、解密和本機圖片、音訊算繪皆可離線使用。使用 **Camouflage Text**、**AI Cover Document**、**AI Image Styling** 或 **AI Audio Styling** 時，需要在 **Settings** 填入你自己的 DeepSeek API 金鑰。AI 功能會將生成提示詞及你主動填寫的風格說明傳送給 DeepSeek。載體明文和通關密語留在本機，圖片和音訊也在本機算繪。解密已經生成的偽裝文字只需要原始載體文字，無需向 DeepSeek 發送請求。Windows 服務使用 DPAPI 保護已儲存的金鑰。移除金鑰需要確認並透過 Windows Hello 驗證。
+
+開啟 **Settings**，輸入金鑰，再點選 **Save with Windows Hello**。 對於綁定本機的載體，可以在 **Protection** 啟用選用的打字檢查。請先用測試訊息練習。
 
 ## 安全性與復原
 
@@ -57,6 +77,13 @@ V4 支援 V4 載體。V1–V3 檔案請使用對應的舊版程式開啟。
 如果要自訂驗證資料的位置，首次安裝時可在 PowerShell 執行 `& '.\Install V4.cmd' -DataDirectory 'D:\ShadowEnclaveV4Data'`。請選擇本機磁碟上的空資料夾，路徑中應無符號連結或目錄接合。修復安裝會繼續使用此位置。
 
 ## 從原始碼建置
+
+要使用 Git 下載原始碼，請在 GitHub 的 **Code** 選單複製 HTTPS 網址，並替換 `<repository-https-url>`。
+
+```powershell
+git clone "<repository-https-url>" ShadowEnclaveV4
+cd ShadowEnclaveV4
+```
 
 在 64 位元 Windows 上安裝包含 Tcl/Tk 的標準 CPython 3.14，並確認系統有 .NET Framework 4.x 編譯器。在儲存庫根目錄開啟 PowerShell，執行以下指令。
 

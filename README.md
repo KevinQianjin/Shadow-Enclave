@@ -6,6 +6,10 @@
 
 Shadow Enclave V4 is an English-language Windows desktop app for encrypting text and carrying the ciphertext in images, audio, or text. Use **Portable** to send a message to another computer, or **This PC Only** to bind it to your Windows account and TPM. You can put the ciphertext in one carrier or split it across two matching parts.
 
+[Quick start](#quick-start)
+
+![Home screen with Encrypt, Decrypt, Settings, and About](docs/images/home.png)
+
 ## Install on Windows
 
 You need 64-bit Windows 11, an administrator who can approve service installation, and Windows Hello configured for the account using V4. **This PC Only** also requires a usable TPM 2.0. The prebuilt bundle includes the runtime, so recipients can use it without installing Python.
@@ -21,12 +25,26 @@ You need 64-bit Windows 11, an administrator who can approve service installatio
 3. Extract the **whole** bundle to a folder. Run `Install V4.cmd` and approve the Windows administrator prompt. This installs the app and its broker service.
 4. Run `Start V4.cmd`. On first launch, choose **Enroll Windows Hello** and complete the native Windows prompts using the intended account. Windows handles the fingerprint, face, or PIN according to the device's policy.
 
-## Encrypt, send, and decrypt
+## Quick start
 
-1. Open **Encrypt**, enter your text, and choose the carrier format and number of parts. Standard carriers include PNG, BMP, WAV, FLAC, and text armor. AI camouflage can turn a short message into one or two natural-looking English texts.
-2. Choose **Portable** or **This PC Only** and set a strong, unique passphrase. Save it securely. Export the carrier files.
-3. To share a **Portable** message, send the original files as attachments and communicate the passphrase through a separate channel. Send both parts for a split carrier. Image or audio conversion, messaging compression, and edits to the encoded text may destroy the embedded data.
-4. In **Decrypt**, open the carrier or both matching parts, enter the passphrase, and authorize the request with Windows Hello.
+### Create a test PNG
+
+1. On the home screen, select **Open** under **Encrypt**. In **Input**, type `Hello from Shadow Enclave V4.` and select **Continue**.
+2. In **Output**, select **Single Carrier**, **Portable — Ready to Share**, and **PNG**. Use **Browse** next to **Output folder** to choose where to save the file.
+3. In **Protection**, securely save the generated passphrase. Select **Continue**, then select **Encrypt** in **Review**. Note the location of the exported PNG.
+
+![Output screen with Single Carrier, Portable, and PNG selected](docs/images/encrypt-png.png)
+
+### Open the test PNG
+
+1. Return to the home screen and select **Open** under **Decrypt**. Keep **Detect Format** selected. Select **Browse** next to **Carrier / Text A** and choose the exported PNG. Leave **Partner / Text B** empty for this test.
+2. Select **Check & Decrypt**, enter the same passphrase, and complete Windows Hello. Verify that **Decryption Complete** shows the original message.
+
+![Decrypt screen with a sample PNG in Carrier / Text A](docs/images/decrypt-png.png)
+
+## Sharing and device binding
+
+Send Portable carriers as original attachments and share the passphrase through a separate channel. For a split carrier, load both files from the same export into **Carrier / Text A** and **Partner / Text B**. Keep encoded text unchanged and avoid image or audio conversion.
 
 | Mode | Where it opens | What is required |
 | --- | --- | --- |
@@ -38,6 +56,8 @@ V4 opens V4 carriers. Use the corresponding older program for V1–V3 files.
 ## DeepSeek and privacy
 
 Standard encryption, decryption, and local image/audio rendering work offline. To use **Camouflage Text**, **AI Cover Document**, **AI Image Styling**, or **AI Audio Styling**, add your own DeepSeek API key in **Settings**. AI features send generation prompts and any style instructions you enter to DeepSeek. Carrier plaintext and passphrases stay local, and image/audio rendering runs on your PC. Decrypting an already generated camouflage carrier requires the original text but no DeepSeek request. The Windows service protects the saved API key with DPAPI. Removing the saved key requires confirmation and Windows Hello.
+
+Open **Settings**, enter your key, and select **Save with Windows Hello**. For a device-bound carrier, you can enable the optional typing check in **Protection**. Practice with a disposable message before relying on it.
 
 ## Security and recovery
 
@@ -57,6 +77,13 @@ Standard encryption, decryption, and local image/audio rendering work offline. T
 For a custom verification-data location, run `& '.\Install V4.cmd' -DataDirectory 'D:\ShadowEnclaveV4Data'` in PowerShell on first installation. Choose an empty folder on a local drive with no symbolic links or junctions in the path. Repair reuses this location.
 
 ## Build from source
+
+To download the source with Git, copy the HTTPS address from **Code** on GitHub and use it in place of `<repository-https-url>`.
+
+```powershell
+git clone "<repository-https-url>" ShadowEnclaveV4
+cd ShadowEnclaveV4
+```
 
 On 64-bit Windows, install standard CPython 3.14 with Tcl/Tk and make sure the Windows .NET Framework 4.x compiler is available. From the repository root in PowerShell:
 
